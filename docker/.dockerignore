@@ -1,0 +1,19 @@
+.# Ignore git stuff
+.git
+.gitignore
+
+# Ignore local docker data (databases, redis, etc.)
+docker/data
+
+# Ignore logs
+storage/logs
+*.log
+
+# Ignore node_modules if using frontend
+node_modules
+
+# Ignore IDE/editor files
+.vscode
+.idea
+*.swp
+
