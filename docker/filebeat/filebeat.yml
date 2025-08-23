@@ -1,0 +1,12 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/www/laravel/storage/logs/laravel-*.log
+    fields:
+      service: laravel-app
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
