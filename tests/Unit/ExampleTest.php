@@ -1,16 +1,12 @@
 <?php
 
-namespace Tests\Unit;
-
-use PHPUnit\Framework\TestCase;
-
-class ExampleTest extends TestCase
+function sum($a, $b): int
 {
-    /**
-     * A basic test example.
-     */
-    public function test_that_true_is_true(): void
-    {
-        $this->assertTrue(true);
-    }
+    return $a + $b;
 }
+
+test('sum', function () {
+    $result = sum(1, 2);
+
+    expect($result)->toBe(3);
+});

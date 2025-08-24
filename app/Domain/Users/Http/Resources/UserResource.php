@@ -22,13 +22,13 @@ class UserResource extends JsonResource
         }
 
         return [
-            'id'                  => $this->id,
-            'email'               => $this->email,
-            'isActive'            => $this->is_active,
-            'emailVerifiedAt'     => $this->email_verified_at,
-            'locale'              => $this->locale,
-            'createdAt'           => $this->created_at->format('Y-m-d\TH:i:s'),
-            'updatedAt'           => $this->updated_at->format('Y-m-d\TH:i:s'),
+            'id'              => $this->id,
+            'email'           => $this->email,
+            'isActive'        => $this->is_active,
+            'emailVerifiedAt' => $this->email_verified_at,
+            'locale'          => $this->locale,
+            'createdAt'       => $this->created_at->format('Y-m-d\TH:i:s'),
+            'updatedAt'       => $this->updated_at->format('Y-m-d\TH:i:s'),
         ];
     }
 }

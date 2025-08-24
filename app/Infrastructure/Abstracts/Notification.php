@@ -36,11 +36,7 @@ abstract class Notification extends \Illuminate\Notifications\Notification imple
      */
     public function via()
     {
-        return [
-            'mail',
-            'broadcast',
-            'database',
-        ];
+        return ['mail', 'broadcast', 'database'];
     }
 
     /**

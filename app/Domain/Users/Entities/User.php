@@ -21,18 +21,9 @@ class User extends Authenticatable implements JWTSubject
         'is_active' => 'boolean',
     ];
 
-    protected $fillable = [
-        'email',
-        'password',
-        'locale',
-        'email_verified_at',
-        'name',
-    ];
+    protected $fillable = ['email', 'password', 'locale', 'email_verified_at', 'name'];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     protected static function newFactory()
     {

@@ -8,5 +8,4 @@ filebeat.inputs:
     fields_under_root: true
 
 output.logstash:
-  hosts: ["logstash:5044"]
-
+  hosts: ['logstash:5044']

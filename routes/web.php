@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test-logs', function () {
-
     \Log::info('Test Logs', [
         'user_id' => 1,
         'data'    => [

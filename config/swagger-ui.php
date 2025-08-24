@@ -1,5 +1,3 @@
-
-        Cache::remember()
 <?php
 
 use Wotz\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
@@ -32,10 +30,7 @@ return [
             /*
              * The middleware that is applied to the route.
              */
-            'middleware' => [
-                'web',
-                EnsureUserIsAuthorized::class,
-            ],
+            'middleware' => ['web', EnsureUserIsAuthorized::class],
 
             /*
              * Specify the validator URL. Set to false to disable validation.

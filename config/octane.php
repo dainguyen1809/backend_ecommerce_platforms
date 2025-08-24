@@ -24,7 +24,6 @@ use Laravel\Octane\Listeners\StopWorkerIfNecessary;
 use Laravel\Octane\Octane;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Octane Server
@@ -65,10 +64,7 @@ return [
     */
 
     'listeners' => [
-        WorkerStarting::class => [
-            EnsureUploadedFilesAreValid::class,
-            EnsureUploadedFilesCanBeMoved::class,
-        ],
+        WorkerStarting::class => [EnsureUploadedFilesAreValid::class, EnsureUploadedFilesCanBeMoved::class],
 
         RequestReceived::class => [
             ...Octane::prepareApplicationForNextOperation(),
@@ -109,14 +105,9 @@ return [
             // CollectGarbage::class,
         ],
 
-        WorkerErrorOccurred::class => [
-            ReportException::class,
-            StopWorkerIfNecessary::class,
-        ],
+        WorkerErrorOccurred::class => [ReportException::class, StopWorkerIfNecessary::class],
 
-        WorkerStopping::class => [
-            CloseMonologHandlers::class,
-        ],
+        WorkerStopping::class => [CloseMonologHandlers::class],
     ],
 
     /*
@@ -130,9 +121,7 @@ return [
     |
     */
 
-    'warm' => [
-        ...Octane::defaultServicesToWarm(),
-    ],
+    'warm' => [...Octane::defaultServicesToWarm()],
 
     'flush' => [
         //
@@ -220,5 +209,4 @@ return [
     */
 
     'max_execution_time' => 30,
-
 ];

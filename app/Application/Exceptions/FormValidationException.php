@@ -30,12 +30,15 @@ class FormValidationException extends \Illuminate\Validation\ValidationException
 
     public function render()
     {
-        return new JsonResponse([
-            'data' => [
-                'message' => 'The given data was invalid.',
-                'errors'  => $this->validator->errors()->messages(),
+        return new JsonResponse(
+            [
+                'data' => [
+                    'message' => 'The given data was invalid.',
+                    'errors'  => $this->validator->errors()->messages(),
+                ],
+                'meta' => ['timestamp' => intdiv((int) now()->format('Uu'), 1000)],
             ],
-            'meta' => ['timestamp' => intdiv((int) now()->format('Uu'), 1000)],
-        ], $this->status);
+            $this->status,
+        );
     }
 }

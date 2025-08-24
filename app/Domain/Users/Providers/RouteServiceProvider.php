@@ -2,6 +2,7 @@
 
 namespace App\Domain\Users\Providers;
 
+use App\Domain\Users\Http\Controllers\RegisterController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -24,12 +25,22 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes(Router $router): void
     {
-        $router->group([
-            'namespace'  => $this->namespace,
-            'prefix'     => 'api',
-            'middleware' => ['api'],
-        ], function (Router $router) {
-            // list routes
+        $router->group(
+            [
+                'namespace'  => $this->namespace,
+                'prefix'     => 'api/v1/auth',
+                'middleware' => ['api'],
+            ],
+            function (Router $router) {
+                $this->mapRoutesWhenGuest($router);
+            },
+        );
+    }
+
+    private function mapRoutesWhenGuest(Router $router): void
+    {
+        $router->group(['middleware' => 'guest'], function () use ($router) {
+            $router->post('register', [RegisterController::class, 'register'])->name('api.auth.register');
         });
     }
 

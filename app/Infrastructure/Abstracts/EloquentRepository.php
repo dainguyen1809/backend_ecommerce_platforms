@@ -78,23 +78,17 @@ abstract class EloquentRepository implements BaseRepository
 
         $cacheKey = sprintf('%s:%s', $this->model->getTable(), $id);
 
-        return Cache::remember(
-            $cacheKey,
-            now()->addHour(),
-            fn () => $this->findOneBy(['id' => $id])
-        );
+        return Cache::remember($cacheKey, now()->addHour(), fn () => $this->findOneBy(['id' => $id]));
     }
 
     public function findOneBy(array $criteria): Model
     {
         if (! $this->withoutGlobalScopes) {
-            return $this->model->with($this->with)
-                ->where($criteria)
-                ->orderByDesc('created_at')
-                ->firstOrFail();
+            return $this->model->with($this->with)->where($criteria)->orderByDesc('created_at')->firstOrFail();
         }
 
-        return $this->model->with($this->with)
+        return $this->model
+            ->with($this->with)
             ->withoutGlobalScopes()
             ->where($criteria)
             ->orderByDesc('created_at')

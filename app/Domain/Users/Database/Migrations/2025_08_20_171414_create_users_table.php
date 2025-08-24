@@ -18,7 +18,9 @@ return new class() extends Migration
             $table->boolean('is_active')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('locale', 5)->default('en_US');
-            $table->string('name');
+            $table->string('full_name');
+            $table->string('gender')->nullable();
+            $table->timestamp('dob')->nullable();
             $table->string('anti_phishing_code', 20)->nullable();
             $table->string('email_token_confirmation', 36)->nullable();
             $table->string('email_token_disable_account', 36)->nullable();

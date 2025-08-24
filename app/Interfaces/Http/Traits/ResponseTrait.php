@@ -21,10 +21,13 @@ trait ResponseTrait
 
     protected function respondWithCustomData($data, $status = 200): JsonResponse
     {
-        return new JsonResponse([
-            'data' => $data,
-            'meta' => ['timestamp' => $this->getTimestampInMilliseconds()],
-        ], $status);
+        return new JsonResponse(
+            [
+                'data' => $data,
+                'meta' => ['timestamp' => $this->getTimestampInMilliseconds()],
+            ],
+            $status,
+        );
     }
 
     protected function getTimestampInMilliseconds(): int
@@ -37,10 +40,13 @@ trait ResponseTrait
      */
     protected function respondWithNoContent(): JsonResponse
     {
-        return new JsonResponse([
-            'data' => null,
-            'meta' => ['timestamp' => $this->getTimestampInMilliseconds()],
-        ], Response::HTTP_NO_CONTENT);
+        return new JsonResponse(
+            [
+                'data' => null,
+                'meta' => ['timestamp' => $this->getTimestampInMilliseconds()],
+            ],
+            Response::HTTP_NO_CONTENT,
+        );
     }
 
     /**
@@ -48,9 +54,9 @@ trait ResponseTrait
      */
     protected function respondWithCollection(LengthAwarePaginator $collection)
     {
-        return (new $this->resourceCollection($collection))->additional(
-            ['meta' => ['timestamp' => $this->getTimestampInMilliseconds()]]
-        );
+        return (new $this->resourceCollection($collection))->additional([
+            'meta' => ['timestamp' => $this->getTimestampInMilliseconds()],
+        ]);
     }
 
     /**
@@ -58,8 +64,8 @@ trait ResponseTrait
      */
     protected function respondWithItem(Model $item)
     {
-        return (new $this->resourceItem($item))->additional(
-            ['meta' => ['timestamp' => $this->getTimestampInMilliseconds()]]
-        );
+        return (new $this->resourceItem($item))->additional([
+            'meta' => ['timestamp' => $this->getTimestampInMilliseconds()],
+        ]);
     }
 }

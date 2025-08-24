@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+vendor
+
+# Build outputs
+public/build
+public/hot
+public/storage
+bootstrap/cache
+storage
+
+# Generated files
+*.log
+.env*
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Laravel specific
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+
+# Exclude all PHP files (handled by Pint)
+*.php
+**/*.php
